@@ -1,0 +1,292 @@
+@font-face {
+    font-family: "BoldSpotiFont";
+    src: url(fonts/Gotham-Spotify-Font/Gotham-Bold.otf);
+}
+
+@font-face {
+    font-family: "MediumSpotiFont";
+    src: url(fonts/Gotham-Spotify-Font/GothamMedium.ttf);
+}
+
+*,
+*::before,
+*::after {
+  margin: 0;
+}
+
+:root{
+    --green: #1DB954;
+    --white: white;
+    --black: #191414;
+}
+
+html{
+    background-color: var(--black);
+}
+
+header{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    margin-top: 2em;
+}
+
+header h1{
+    font-family: "BoldSpotiFont";
+    font-size: 2.5rem;
+    color: var(--white);
+}
+
+header img{
+    width: 20%;
+    height: 20%;
+}
+
+#searcher{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2em;
+    gap: 1em;
+}
+
+#searcher h2{
+    font-family: "MediumSpotiFont";
+    font-size: 1.5rem;
+    color: var(--white);
+}
+
+#searcher input{
+    width: 20%;
+    height: 2em;
+    border-radius: 2em;
+    border: none;
+    padding-left: 1em;
+    font-family: "MediumSpotiFont";
+    font-size: 1.2rem;
+    color: var(--black);
+    background-color: var(--white);
+}
+
+#searcher input:focus{
+    outline: 2px solid var(--green);
+}
+
+#searcher button{
+    width: 10%;
+    height: 2em;
+    border-radius: 2em;
+    border: none;
+    font-family: "MediumSpotiFont";
+    font-size: 1.2rem;
+    color: var(--white);
+    background-color: var(--green);
+}
+
+#searcher button:hover{
+    cursor: pointer;
+    background-color: var(--white);
+    color: var(--green);
+    transition: 0.2s;
+}
+
+
+#results{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: center;
+    margin-top: 5em;
+    gap: 5em;
+    margin-bottom: 5em;
+}
+
+.song{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--green);
+    width: 20vw;
+    height: 65vh;
+    border-radius: 1em;
+}
+
+.song img{
+    width: 100%;
+    height: 100%;
+}
+
+.song--info{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5em;
+    padding: 1em;
+}
+
+.song--info h3{
+    font-family: "MediumSpotiFont";
+    font-size: 1.4rem;
+    color: var(--white);
+    text-align: center;
+    margin-bottom: 0.5em;
+}
+
+.song--info p{
+    font-family: "MediumSpotiFont";
+    font-size: 1rem;
+    color: var(--black);
+    text-align: center;
+}
+
+.song--info span{
+    font-family: "MediumSpotiFont";
+    font-size: 1rem;
+    color: var(--white);
+}
+
+.song--info a {
+    font-family: "MediumSpotiFont";
+    text-decoration: none;
+    color: var(--white);
+    background-color: var(--black);
+    padding: 0.5em;
+    border-radius: 0.5em;
+}
+
+.song--info a:hover{
+    cursor: pointer;
+    background-color: var(--white);
+    color: var(--green);
+    transition: 0.2s;
+}
+
+.song--actions{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1em;
+    padding: 1em;
+    margin-top: -0.5em;
+    margin-bottom: 1em;
+}
+
+.play, .stop{
+    width: 3.5em;
+    height: 3.5em;
+    border-radius: 50%;
+    border: none;
+    background-color: var(--black);
+    color: var(--white);
+}
+
+.play:hover, .stop:hover{
+    cursor: pointer;
+    background-color: var(--white);
+    color: var(--green);
+    transition: 0.2s;
+}
+
+i{
+    font-size: 1.2rem;
+}
+
+@media screen and (min-width: 700px) and (max-width: 1200px){
+
+    header h1{
+        font-size: 2rem;
+    }
+
+    #searcher input{
+        width: 40%;
+    }
+
+    #searcher button{
+        width: 20%;
+    }
+
+    .song{
+        width: 40vw;
+        height: 80vh;
+    }
+}
+
+@media screen and (min-width: 400px) and (max-width: 700px){
+
+    header{
+        flex-direction: column;
+        gap: 1em;
+    }
+
+    header h1{
+        font-size: 2rem;
+    }
+
+    header img{
+        width: 40%;
+        height: 40%;
+    }
+
+    #searcher input{
+        width: 40%;
+    }
+
+    #searcher button{
+        width: 20%;
+    }
+
+    #results{
+        flex-flow: column wrap;
+    }
+
+    .song{
+        width: 70vw;
+        height: 80vh;
+    }
+
+    .song--info h3{
+        font-size: 1.2rem;
+    }
+
+    .song--info p{
+        font-size: 0.8rem;
+    }
+}
+
+
+@media screen and (max-width: 400px){
+
+    header{
+        flex-direction: column;
+        gap: 1em;
+    }
+
+    header h1{
+        font-size: 1.5rem;
+    }
+
+    header img{
+        width: 40%;
+        height: 30%;
+    }
+
+    #searcher input{
+        width: 60%;
+    }
+
+    #searcher button{
+        width: 30%;
+    }
+
+    #results{
+        flex-flow: column wrap;
+    }
+
+    .song{
+        width: 80vw;
+        height: 60vh;
+    }
+}
