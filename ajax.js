@@ -38,6 +38,7 @@ var offset = 0;
 
 function throwFirstPetition(){
 
+    offset = 0;
     // Diferenciamos entre la primera petición y las siguientes para que no se repitan los resultados
 
     request = new XMLHttpRequest();
