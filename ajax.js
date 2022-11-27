@@ -1,7 +1,11 @@
 window.onload = () => {
     input = document.getElementById("title");
+
     search_btn = document.getElementById("search");
     search_btn.addEventListener('click', () => throwPetition(true));
+
+    clear_btn = document.getElementById("clear");
+    clear_btn.addEventListener('click', clearResults);
 }
 
 window.addEventListener('scroll',()=>{
@@ -130,4 +134,9 @@ function printResult(tracks, i){
             </audio>
         </div>
     </div>`;
+}
+
+function clearResults(){
+    document.getElementById("results").innerHTML = "";
+    input.value = "";
 }
