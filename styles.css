@@ -182,7 +182,7 @@ header img{
     margin-bottom: 1em;
 }
 
-.play, .stop{
+.playButton{
     width: 3.5em;
     height: 3.5em;
     border-radius: 50%;
@@ -191,7 +191,7 @@ header img{
     color: var(--white);
 }
 
-.play:hover, .stop:hover{
+.playButton:hover{
     cursor: pointer;
     background-color: var(--white);
     color: var(--green);
@@ -200,6 +200,17 @@ header img{
 
 i{
     font-size: 1.2rem;
+}
+
+@media screen and (min-width: 1200px) and (max-width: 1600px){
+    .song{
+        width: 20vw;
+        height: 85vh;
+    }
+
+    .song--info h3{
+        font-size: 1.3rem;
+    }
 }
 
 @media screen and (min-width: 700px) and (max-width: 1200px){

@@ -41,7 +41,9 @@ var offset = 0;
 
 
 function throwPetition(firstTime){
-    if(firstTime){
+    var throwed = false;
+    if(firstTime && !throwed){
+        throwed = true;
         offset = 0;
         // Diferenciamos entre la primera petición y las siguientes para que no se repitan los resultados
         // Ademas de que la primera petición se hace con el offset a 0 y las siguientes con el offset a 20, 40, 60...
@@ -59,9 +61,11 @@ function throwPetition(firstTime){
         request.onreadystatechange = () => responseTreatment(true);
 
         request.send();
+        throwed = false;
 
         offset += 20;
     } else {
+        throwed = true;
         request = new XMLHttpRequest();
         if (input.value != "")
             petition = 'https://api.spotify.com/v1/search?q=' + input.value + '&type=track&offset=' + offset;
@@ -75,6 +79,7 @@ function throwPetition(firstTime){
         request.onreadystatechange = () => responseTreatment(false);
 
         request.send();
+        throwed = false;
 
         offset += 20;
     }
@@ -89,28 +94,39 @@ function responseTreatment(firstTime){
         if (request.status === 200) {
         var response = JSON.parse(request.responseText);
         var tracks = response.tracks.items;
+        console.log(tracks[0]);
         for (var i = 0; i < tracks.length; i++) {
             printResult(tracks, i);
         }
 
         var songs = document.getElementsByClassName("song");
         for (var i = 0; i < songs.length; i++) {
-            var play = songs[i].getElementsByClassName("play")[0];
-            var stop = songs[i].getElementsByClassName("stop")[0];
+            var play = songs[i].getElementsByClassName("playButton")[0];
 
             play.addEventListener('click', (e) => {
                 var audio = e.target.parentElement.parentElement.getElementsByTagName("audio")[0];
-                audio.volume = 0.2;
-                audio.play();
-            });
 
-            stop.addEventListener('click', (e) => {
-                var audio = e.target.parentElement.parentElement.getElementsByTagName("audio")[0];
-                audio.pause();
+                if(e.target.classList.contains("fa-play")){
+                    audio.volume = 0.2;
+                    audio.play();
+
+                    e.target.classList.remove("fa-play");
+                    e.target.classList.add("fa-pause");
+
+                    if(audio.ended){
+                        e.target.classList.remove("fa-play");
+                        e.target.classList.add("fa-pause");
+                    }
+                } else if (e.target.classList.contains("fa-pause")){
+                    audio.pause();
+                    
+                    e.target.classList.remove("fa-pause");
+                    e.target.classList.add("fa-play");
+                }
             });
         }
         } else {
-          alert("There was a problem with the request.");
+            alert("There was a problem with the request.");
         }
     }
 }
@@ -127,8 +143,7 @@ function printResult(tracks, i){
             <a href="${tracks[i].external_urls.spotify}" target="_blank">Open in Spotify</a>
         </div>
         <div class="song--actions">
-            <button class="play"><i class="fa-solid fa-play"></i></button>
-            <button class="stop"><i class="fa-solid fa-pause"></i></button>
+            <button class="playButton"><i class="fa-solid fa-play"></i></button>
             <audio>
                 <source src="${tracks[i].preview_url}" type="audio/mpeg">
             </audio>
