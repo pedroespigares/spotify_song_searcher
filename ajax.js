@@ -94,7 +94,6 @@ function responseTreatment(firstTime){
         if (request.status === 200) {
         var response = JSON.parse(request.responseText);
         var tracks = response.tracks.items;
-        console.log(tracks[0]);
         for (var i = 0; i < tracks.length; i++) {
             printResult(tracks, i);
         }
