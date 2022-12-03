@@ -1,5 +1,10 @@
 window.onload = () => {
     input = document.getElementById("title");
+    input.addEventListener('keyup', (e) => {
+        if(e.keyCode == 13){
+            throwPetition(true);
+        }
+    });
 
     search_btn = document.getElementById("search");
     search_btn.addEventListener('click', () => throwPetition(true));
@@ -37,7 +42,6 @@ fetch('https://accounts.spotify.com/api/token', authParameters)
 
 var request;
 var offset = 0;
-
 
 
 function throwPetition(firstTime){
